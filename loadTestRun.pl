@@ -1,11 +1,11 @@
 #!/usr/bin/env perl 
 #===============================================================================
 #
-#         FILE: makeTests.pl
+#         FILE: loadTestRun.pl
 #
-#        USAGE: ./makeTests.pl  
+#        USAGE: ./loadTestRun.pl  
 #
-#  DESCRIPTION: Creates a lot of test runs 
+#  DESCRIPTION: 
 #
 #      OPTIONS: ---
 # REQUIREMENTS: ---
@@ -14,12 +14,21 @@
 #       AUTHOR: wba (wolf), wbiker@gmx.at
 # ORGANIZATION: 
 #      VERSION: 1.0
-#      CREATED: 10/10/13 19:32:52
+#      CREATED: 10/10/13 20:40:08
 #     REVISION: ---
 #===============================================================================
 
 use Modern::Perl;
 
 use Data::Dump::Streamer;
+use autodie;
+
+my $tr_file = q(testruns.dat);
 
 
+my $ref = do $tr_file;
+
+my $o = Data::Dump::Streamer->new;
+
+$o->Data($ref);
+$o->Out();
