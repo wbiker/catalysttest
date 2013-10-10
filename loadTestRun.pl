@@ -20,15 +20,10 @@
 
 use Modern::Perl;
 
-use Data::Dump::Streamer;
+use Data::Dumper;
 use autodie;
 
 my $tr_file = q(testruns.dat);
 
-
 my $ref = do $tr_file;
-
-my $o = Data::Dump::Streamer->new;
-
-$o->Data($ref);
-$o->Out();
+print Dumper $ref;

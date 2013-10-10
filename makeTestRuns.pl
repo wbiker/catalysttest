@@ -20,7 +20,7 @@
 
 use Modern::Perl;
 
-use Data::Dump::Streamer;
+use Data::Dumper;
 use autodie;
 use Digest::MD5 qw(md5_hex);
 use Time::HiRes qw(time);
@@ -33,19 +33,19 @@ my $tp_file = 'testcaseparams.dat';
 my @subject = qw(BitLocker DE FE VMware Volume USB Disc FFH VISTA W7 W8 Linux Mac);
 my @pred = qw(encrypt decrypt format boot shutdown kill move copy move goes died);
 
-my %tr;
+my $tr = {};
 
 for my $count (0..1000) {
     my $id = get_id();
-    $tr{$id} = { name => get_name(), ts => []  }; 
+    $tr->{$id} = { name => get_name(), id => $id, ts => []  }; 
 }
 
 open(my $fh, ">", $tr_file);
-my $dump = Data::Dump::Streamer->new();
+$Data::Dumper::Purity = 1;
+$Data::Dumper::Useqq = 1;
+my $d = Data::Dumper->new([$tr], ['tr']);
+print $fh $d->Dump();
 
-$dump->Data(%tr);
-$dump->Out();
-print $fh $dump->To($fh)->Out();
 close($fh);
 
 sub get_name {
