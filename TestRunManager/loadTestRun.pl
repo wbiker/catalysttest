@@ -27,3 +27,4 @@ my $tr_file = q(testruns.dat);
 
 my $ref = do $tr_file;
 print Dumper $ref;
+#its that easy
