@@ -1,0 +1,3 @@
+[submodule "TestRunManager"]
+	path = TestRunManager
+	url = git@github.com:wbiker/TestRunManager.git
